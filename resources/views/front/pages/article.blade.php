@@ -281,6 +281,9 @@
                             <div class="thumbnail">
                                 <img src="{{ $article->main_image() }}" alt=""
                                     style="max-height: 500px; width: 100%;object-fit:cover">
+                                <span style="text-align: center;font-size: 13px;display: block !important;">
+                                    {{ $article->main_image_title }}
+                                </span>
                             </div>
                             <p>
                                 {!! $article->description !!}
