@@ -17,14 +17,23 @@ class AddTagsSeeder extends Seeder
      */
     public function run()
     {
-        // Fetch tags from old database connection (if using a different connection)
+        // Fetch tags from the old database connection
         $oldTags = DB::connection('old_database')->table('tags')->get();
 
         foreach ($oldTags as $oldTag) {
-            // Create a slug for the tag name
+            // Generate a unique slug for each tag name
             $slug = MainHelper::slug($oldTag->name);
+            $originalSlug = $slug;
+            $counter = 1;
 
-            // Insert data into new tags table
+            // Check if the slug already exists in the tags table
+            while (Tag::where('slug', $slug)->exists()) {
+                // If it exists, append a counter to make it unique
+                $slug = $originalSlug . '-' . $counter;
+                $counter++;
+            }
+
+            // Insert data into the new tags table
             Tag::create([
                 'id' => $oldTag->id,
                 'tag_name' => $oldTag->name,
