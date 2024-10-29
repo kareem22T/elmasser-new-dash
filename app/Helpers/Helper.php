@@ -7,13 +7,21 @@ function assignTagsToArticle($article, $tags)
 {
     $tagsIdsArray = [];
     foreach ($tags as $tag) {
-        $tagsIdsArray[] = Tag::firstOrCreate(['id' => $tag], ['tag_name' => $tag, 'slug' => \MainHelper::slug($tag)])->id;
+        $isTag = Tag::find($tag);
+        if ($isTag)
+            $tagsIdsArray[] = $isTag->id;
+        else {
+            $tagRecord = Tag::create(
+                ['tag_name' => $tag],
+                ['slug' => \MainHelper::slug($tag)]
+            );
+            $tagsIdsArray[] = $tagRecord->id;
+        }
     }
     $article->tags()->sync($tagsIdsArray);
 
     return true;
 }
-
 function redirectCategoryRoute($category)
 {
     return $category ? route('category.show', ['category' => $category->id, 'slug' => $category->slug]) : '';

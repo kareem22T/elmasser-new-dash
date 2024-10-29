@@ -19,6 +19,7 @@ class MigrateOldArticlesSeeder extends Seeder
 
             // Insert data into new articles table
             Article::create([
+                'id' => $oldArticle->id,
                 'title' => $oldArticle->title,
                 'slug' => Str::slug($oldArticle->title),
                 'description' => $description,

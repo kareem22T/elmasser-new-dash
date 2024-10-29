@@ -6,13 +6,23 @@
 @endphp
 
 
-@extends('layouts.app', ['page_title' => $article->title, 'seo_meta_description' => $postcontent, 'page_image' => $article->main_image(), 'seo_key_words' => implode(',', $article->tags->pluck('tag_name')->toArray()), 'page_author' => $article->user->name])
+@extends('layouts.app', [
+    'page_title' => $article->title,
+    'seo_meta_description' => $postcontent,
+    'page_image' => url($article->main_image()), // Prepend main URL
+    'seo_key_words' => implode(',', $article->tags->pluck('tag_name')->toArray()),
+    'page_author' => $article->user->name
+])
 @section('content')
     <style>
         article p {
             display: flex !important;
             flex-wrap: wrap !important;
-            line-height: 1.5 !important;
+            line-height: 2 !important;
+            margin-bottom: 16px !important;
+        }
+        article h2 {
+            font-size: 1.5rem !important;
         }
 
         article span {
@@ -294,11 +304,11 @@
                             </div>
                             <div class="side_articles">
                                 @foreach ($more_visited as $visit)
-                                    <a href="{{ redirectArticleRoute($article) }}" class="article">
-                                        <img src="{{ $article->main_image() }}" alt="">
+                                    <a href="{{ redirectArticleRoute($visit) }}" class="article">
+                                        <img src="{{ $visit->main_image() }}" alt="">
                                         <div class="text">
                                             <i class="fa-solid fa-angle-left"></i>
-                                            {{ $article->title }}
+                                            {{ $visit->title }}
                                         </div>
                                     </a>
                                 @endforeach
@@ -315,7 +325,7 @@
                             <div class="side_articles">
                                 @foreach ($latest as $article)
                                     <a href="/article/{{ $article->id }}" class="article">
-                                        <img src="{{ $article->thumbnail_path }}" alt="">
+                                        <img src="{{ $article->main_image() }}" alt="">
                                         <div class="text">
                                             <i class="fa-solid fa-angle-left"></i>
                                             {{ $article->title }}

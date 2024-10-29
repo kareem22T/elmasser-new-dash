@@ -704,7 +704,7 @@ header .head .container .head_advertisment {
   margin: 0 0 16px;
 }
 .category_wrapper .articles_wrapper article p {
-  font-weight: 600;
+  font-weight: 500;
 }
 .category_wrapper .articles_wrapper article .tags {
   display: flex;

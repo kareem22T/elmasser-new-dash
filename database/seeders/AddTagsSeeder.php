@@ -26,6 +26,7 @@ class AddTagsSeeder extends Seeder
 
             // Insert data into new tags table
             Tag::create([
+                'id' => $oldTag->id,
                 'tag_name' => $oldTag->name,
                 'slug' => $slug,
             ]);
