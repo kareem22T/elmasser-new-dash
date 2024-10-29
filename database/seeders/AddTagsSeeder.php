@@ -21,22 +21,30 @@ class AddTagsSeeder extends Seeder
         $oldTags = DB::connection('old_database')->table('tags')->get();
 
         foreach ($oldTags as $oldTag) {
-            // Generate a unique slug for each tag name
-            $slug = MainHelper::slug($oldTag->name);
-            $originalSlug = $slug;
-            $counter = 1;
+            // Ensure unique tag name
+            $tagName = $oldTag->name;
+            $originalName = $tagName;
+            $nameCounter = 1;
 
-            // Check if the slug already exists in the tags table
+            while (Tag::where('tag_name', $tagName)->exists()) {
+                $tagName = $originalName . ' ' . $nameCounter;
+                $nameCounter++;
+            }
+
+            // Generate a unique slug for each tag name
+            $slug = MainHelper::slug($tagName);
+            $originalSlug = $slug;
+            $slugCounter = 1;
+
             while (Tag::where('slug', $slug)->exists()) {
-                // If it exists, append a counter to make it unique
-                $slug = $originalSlug . '-' . $counter;
-                $counter++;
+                $slug = $originalSlug . '-' . $slugCounter;
+                $slugCounter++;
             }
 
             // Insert data into the new tags table
             Tag::create([
                 'id' => $oldTag->id,
-                'tag_name' => $oldTag->name,
+                'tag_name' => $tagName,
                 'slug' => $slug,
             ]);
         }
