@@ -3,15 +3,19 @@
     $postcontent = preg_replace("/\r|\n/", '', $postcontent);
     $postcontent = str_replace(['"', "'"], '', $postcontent);
     $postcontent = Str::words($postcontent, 50, '');
+    $url = url($article->main_image());
+    $title = $article->title;
+    $tags = implode(',', $article->tags->pluck('tag_name')->toArray());
+    $author = $article->user->name;
 @endphp
 
 
 @extends('layouts.app', [
-    'page_title' => $article->title,
+    'page_title' => $title,
     'seo_meta_description' => $postcontent,
-    'page_image' => url($article->main_image()), // Prepend main URL
-    'seo_key_words' => implode(',', $article->tags->pluck('tag_name')->toArray()),
-    'page_author' => $article->user->name
+    'page_image' => $url, // Prepend main URL
+    'seo_key_words' => $tags,
+    'page_author' => $author
 ])
 @section('content')
     <style>
