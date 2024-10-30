@@ -169,4 +169,3 @@ Route::get('/article/{article}', function(Article $article) {
 Route::get('/category/{category}', function(Category $category) {
     return redirect()->to(redirectCategoryRoute($category));
 });
-

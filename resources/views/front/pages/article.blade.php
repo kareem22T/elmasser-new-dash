@@ -28,7 +28,7 @@
         article span {
             display: flex !important;
             flex-wrap: wrap !important;
-            line-height: 1.5 !important;
+            line-height: 1.9 !important;
         }
 
         article img {
