@@ -25,7 +25,7 @@
         'feed_url' => env('APP_URL') . '/feed',
         'feed_title' => 'آخر الأخبار',
         'cache_pages' => 1,
-        'canonical' => str_replace('/index.php', '', request()->url()),
+        'canonical' => str_replace('/index.php', '', str_replace('http://', 'https://', request()->url())),
         'twitter_author' => 'Nafezly',
     ];
     $website_settings = collect($website_settings);
