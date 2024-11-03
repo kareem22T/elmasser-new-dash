@@ -55,7 +55,7 @@
 <meta property="og:description" content="{{ $page_description }}" />
 <meta property="og:url" content="{{ url()->current() }}" />
 <meta property="og:site_name" content="{{ $website_settings['website_name'] }}" />
-<meta property="og:image" content="{{ $page_image }}?v={{time()}}" />
+<meta property="og:image" content="{{ $page_image }}" />
 <meta property="og:image:width" content="700" />
 <meta property="og:image:height" content="400" />
 <meta property="og:image:type" content="image/jpeg" />
