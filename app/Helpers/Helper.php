@@ -16,11 +16,19 @@ function assignTagsToArticle($article, $tags)
             $existingTag->increment('usage_count'); // This assumes you have a usage_count column
             $tagsIdsArray[] = $existingTag->id;
         } else {
-            // If tag doesn't exist, create it
-            $tagRecord = Tag::create(
-                ['tag_name' => $tag, 'slug' => \MainHelper::slug($tag)]
-            );
-            $tagsIdsArray[] = $tagRecord->id;
+            $tagsIdsArray = [];
+            foreach ($tags as $tag) {
+                $isTag = Tag::find($tag);
+                if ($isTag)
+                    $tagsIdsArray[] = $isTag->id;
+                else {
+                    $tagRecord = Tag::create(
+                        ['tag_name' => $tag],
+                        ['slug' => \MainHelper::slug($tag)]
+                    );
+                    $tagsIdsArray[] = $tagRecord->id;
+                }
+            }
         }
     }
     // Sync tags to the article
