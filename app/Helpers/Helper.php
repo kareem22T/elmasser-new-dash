@@ -13,7 +13,6 @@ function assignTagsToArticle($article, $tags)
             // If tag exists, increment a counter or perform desired action
             // For example, you can increment a counter or handle the logic as needed
             // Example: incrementing the tag's usage count or handling as needed
-            $existingTag->increment('usage_count'); // This assumes you have a usage_count column
             $tagsIdsArray[] = $existingTag->id;
         } else {
             $tagsIdsArray = [];
