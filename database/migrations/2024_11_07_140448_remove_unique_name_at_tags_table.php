@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('tags', function (Blueprint $table) {
             // Drop the unique constraint
-            $table->dropUnique('tags_name_unique'); // Ensure this is the correct index name
+            $table->dropUnique('tags_tag_name_unique'); // Ensure this is the correct index name
         });
     }
 
@@ -28,7 +28,7 @@ return new class extends Migration
     {
         Schema::table('tags', function (Blueprint $table) {
             // Add the unique constraint back if needed
-            $table->unique('name');
+            $table->unique('tag_name');
         });
     }
 };
