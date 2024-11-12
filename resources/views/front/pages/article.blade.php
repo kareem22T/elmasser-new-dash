@@ -322,7 +322,7 @@
                             </div>
                         @endif
                             <div class="ad-left-2" style="margin: 16px 0">
-                                    <img src="{{ asset('assets2/imgs/home-maser-ad-2.jpg') }}" alt="">
+                                    <img src="{{ asset('assets2/imgs/home-maser-ad-2.jpg') }}?v={{time()}}" alt="">
                                             </div>
                         @if ($latest && $latest->count() > 3)
                             <div class="head"
