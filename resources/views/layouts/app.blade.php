@@ -23,6 +23,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <style>
+        .ad-left-2 img {
+            width: 100%
+        }
         .date {
             font-size: 13px;
             margin-top: 8px
