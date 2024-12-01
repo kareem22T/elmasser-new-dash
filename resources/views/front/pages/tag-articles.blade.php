@@ -67,7 +67,7 @@
                     </div>
                 @endif
                 <div class="ad-left-2" style="margin: 16px 0">
-                    <img src="{{ asset('assets2/imgs/home-maser-ad-2.jpg') }}?v={{time()}}" alt="">
+                    <img src="{{ asset('assets2/imgs/home-maser-ad.png') }}?v={{time()}}" alt="">
                             </div>
                 @if($latest && $latest->count() > 3)
                     <div class="head" style="background: #0168b3; color: #fff; font-size: 26px;font-weight: 700;padding: 8px">

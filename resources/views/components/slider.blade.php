@@ -38,6 +38,6 @@
         </div>
     @endif
     <div class="side-ad">
-        <img src="{{ asset('assets2/imgs/home-maser-ad.jpg') }}?v={{time()}}" alt="">
+        <img src="{{ asset('assets2/imgs/home-maser-ad.png') }}?v={{time()}}" alt="">
     </div>
 </div>
